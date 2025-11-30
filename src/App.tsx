@@ -7,13 +7,15 @@ import ContactUs from './pages/contact-us'
 import PrivacyPolicy from './pages/privacy-policy'
 import RefundPolicy from './pages/refund-policy'
 import TermsConditions from './pages/terms-conditions'
+import Login from './pages/login'
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <main className="flex-grow">
+    <div className="min-h-screen flex flex-col w-full">
+      <main className="w-full flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/aml-policy" element={<AMLPolicy />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
