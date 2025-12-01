@@ -1,14 +1,15 @@
-import './App.css'
-import { Routes, Route } from 'react-router-dom'
-import Footer from './components/footer'
-import Home from './pages/home'
-import AMLPolicy from './pages/aml-policy'
-import ContactUs from './pages/contact-us'
-import PrivacyPolicy from './pages/privacy-policy'
-import RefundPolicy from './pages/refund-policy'
-import TermsConditions from './pages/terms-conditions'
-import Login from './pages/login'
-import Signup from './pages/signup'
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Footer from "./components/footer";
+import Home from "./pages/home";
+import AMLPolicy from "./pages/aml-policy";
+import ContactUs from "./pages/contact-us";
+import PrivacyPolicy from "./pages/privacy-policy";
+import RefundPolicy from "./pages/refund-policy";
+import TermsConditions from "./pages/terms-conditions";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+import Dashboard from "./pages/dashboard";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <main className="w-full flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/user/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/aml-policy" element={<AMLPolicy />} />
@@ -27,7 +29,7 @@ function App() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
