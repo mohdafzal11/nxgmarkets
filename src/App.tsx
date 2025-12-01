@@ -10,15 +10,20 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Dashboard from "./pages/dashboard";
 import CryptoChill from "./pages/crypto-chill";
+import Invoice from "./pages/invoice";
+import { Toaster } from "react-hot-toast";
+
 
 function App() {
   return (
     <div className="min-h-screen flex flex-col w-full">
       <main className="w-full flex-1">
+        <Toaster position="top-right" />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/user/dashboard" element={<Dashboard />} />
           <Route path="/user/deposit/crypto-chill" element={<CryptoChill />} />
+          <Route path="/user/invoice" element={<Invoice />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/aml-policy" element={<AMLPolicy />} />
