@@ -13,9 +13,18 @@ import CryptoChill from "./pages/crypto-chill";
 import Invoice from "./pages/invoice";
 import { Toaster } from "react-hot-toast";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function App() {
+
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate("/login")
+  }, [])
+
   return (
     <div className="min-h-screen flex flex-col w-full">
       <main className="w-full flex-1">

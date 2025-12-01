@@ -439,15 +439,15 @@ export default function Sidebar() {
               </button>
             </div>
             <div className="space-y-4">
-              <p>Please go to the Dashboard to make a deposit.</p>
+              <p>Please go to the deposit section to make deposit.</p>
               <button
                 onClick={() => {
-                  navigate('/user/dashboard');
+                  navigate('/user/deposit/crypto-chill');
                   setDepositCrypto(false);
                 }}
                 className="w-full bg-[#b52c61] text-white py-2 px-4 rounded-md hover:bg-[#9a2451] transition-colors"
               >
-                Go to Dashboard
+                Deposit
               </button>
             </div>
           </div>
