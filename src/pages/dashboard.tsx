@@ -9,11 +9,12 @@ import {
 import Layout from "../layouts/layout";
 import Navbar from "../components/navbar";
 import DashboardFooter from "../components/dashboard-footer";
+import useUser from "../hooks/useUser";
 
 const breadcrumb = [
   {
     title: "Dashboard",
-    route: "/dashboard",
+    route: "/user/dashboard",
   },
 ];
 
@@ -113,9 +114,14 @@ const overviewMonths = [
 ];
 
 export default function Dashboard() {
+
+  const { user } = useUser();
+
+
+  console.log("User" , user)
   return (
     <Layout>
-      <Navbar breadcrumb={breadcrumb} balance={1000} />
+      <Navbar breadcrumb={breadcrumb} balance={0} />
 
       <main className="flex-1">
         <div className="relative overflow-hidden py-10">
@@ -124,7 +130,7 @@ export default function Dashboard() {
               {/* Title Section */}
               <div className="space-y-4">
                 <h1 className="px-5 text-4xl font-bold text-[#596da0]">
-                  MUNSHI AYAZ AJIZ BASIR
+                  {user && user?.name}
                 </h1>
               </div>
 

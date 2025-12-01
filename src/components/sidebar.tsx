@@ -11,6 +11,8 @@ import {
   SettingsIcon,
   BonusesIcon,
 } from "../icons/icons";
+import { useNavigate } from "react-router-dom";
+
 
 const sidebarItems = [
   {
@@ -72,7 +74,7 @@ const sidebarItems = [
       {
         id: "crypotchill",
         label: "CryptoChill",
-        route: "/user/deposit/crypotchill",
+        route: "/user/deposit/crypto-chill",
       },
       {
         id: "myfatoorah",
@@ -310,7 +312,10 @@ export default function Sidebar() {
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({
     "my-admin": true,
   });
+  const [depositCrypto, setDepositCrypto] = useState(false)
   const [activeItem, setActiveItem] = useState<string>("dashboard");
+  const navigate = useNavigate();
+
 
   const toggleDropdown = (id: string) => {
     setOpenDropdowns((prev) => ({
@@ -319,8 +324,14 @@ export default function Sidebar() {
     }));
   };
 
-  const handleItemClick = (id: string) => {
-    setActiveItem(id);
+  const handleItemClick = (path: string) => {
+    console.log('Parh' , path)
+    if (path === '/user/dashboard' || path ==='/user/deposit/crypto-chill') {
+      navigate(path);
+      return;
+    }
+    setDepositCrypto(true)
+
   };
 
   return (
@@ -334,7 +345,7 @@ export default function Sidebar() {
         <div>
           <button
             onClick={() => {
-              handleItemClick("dashboard");
+              handleItemClick("/user/dashboard");
             }}
             className={`w-full flex items-center justify-between px-4 py-3 text-sm transition-colors`}
           >
@@ -351,7 +362,6 @@ export default function Sidebar() {
           <div key={item.id} className={`border-b border-gray-200`}>
             <button
               onClick={() => {
-                handleItemClick(item.id);
                 if (item.type === "dropdown") {
                   toggleDropdown(item.id);
                 }
@@ -360,9 +370,8 @@ export default function Sidebar() {
             >
               <div className="flex items-center gap-3">
                 <div
-                  className={`${
-                    activeItem === item.id ? "bg-[#b52c61]" : ""
-                  } rounded-md p-2`}
+                  className={`${activeItem === item.id ? "bg-[#b52c61]" : ""
+                    } rounded-md p-2`}
                 >
                   <item.icon
                     fill={activeItem === item.id ? "#ffffff" : "#b52c61"}
@@ -370,9 +379,8 @@ export default function Sidebar() {
                   />
                 </div>
                 <span
-                  className={`text-gray-900 ${
-                    activeItem === item.id ? "opacity-100" : "opacity-50"
-                  } font-medium`}
+                  className={`text-gray-900 ${activeItem === item.id ? "opacity-100" : "opacity-50"
+                    } font-medium`}
                 >
                   {item.label}
                 </span>
@@ -394,20 +402,18 @@ export default function Sidebar() {
                   {item.subItems.map((subItem) => (
                     <button
                       key={subItem.id}
-                      onClick={() => handleItemClick(subItem.id)}
+                      onClick={() => handleItemClick(subItem.route)}
                       className={`w-full flex items-center gap-3 px-5 py-2.5 text-sm transition-colors`}
                     >
                       <span
-                        className={`w-1 h-1 rounded-full ${
-                          activeItem === subItem.id ? "bg-white" : "bg-gray-400"
-                        }`}
+                        className={`w-1 h-1 rounded-full ${activeItem === subItem.id ? "bg-white" : "bg-gray-400"
+                          }`}
                       ></span>
                       <span
-                        className={`text-gray-900 ${
-                          activeItem === subItem.id
-                            ? "opacity-100"
-                            : "opacity-50"
-                        } font-medium`}
+                        className={`text-gray-900 ${activeItem === subItem.id
+                          ? "opacity-100"
+                          : "opacity-50"
+                          } font-medium`}
                       >
                         {subItem.label}
                       </span>
@@ -418,6 +424,35 @@ export default function Sidebar() {
           </div>
         ))}
       </nav>
+
+      {/* CryptoChill Deposit Popup */}
+      {depositCrypto && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold">Deposit</h3>
+              <button
+                onClick={() => setDepositCrypto(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="space-y-4">
+              <p>Please go to the Dashboard to make a deposit.</p>
+              <button
+                onClick={() => {
+                  navigate('/user/dashboard');
+                  setDepositCrypto(false);
+                }}
+                className="w-full bg-[#b52c61] text-white py-2 px-4 rounded-md hover:bg-[#9a2451] transition-colors"
+              >
+                Go to Dashboard
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

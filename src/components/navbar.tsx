@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-
 import { HomeIcon, PhoneIcon } from "../icons/icons";
 import { LogOut } from "lucide-react";
+import { useUser } from "../hooks/useUser";
+
 
 export default function Navbar({
   breadcrumb,
@@ -10,6 +11,7 @@ export default function Navbar({
   breadcrumb: { title: string; route: string }[];
   balance: number;
 }) {
+  const { user, logout } = useUser();
   return (
     <header className="p-2 border-b border-gray-200 bg-white shadow-sm rounded-md mt-2">
       <div className="flex items-center justify-between py-1 px-4">
@@ -49,10 +51,22 @@ export default function Navbar({
             <option>French</option>
           </select>
 
-          {/* Logout Button */}
-          <button className="px-4 py-1 transition-colors">
-            <LogOut className="w-4 h-4 text-[#b52c61]" />
-          </button>
+          {/* User Info & Logout */}
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-gray-700">
+              {user?.username || 'Guest'}
+            </span>
+            <button 
+              onClick={() => {
+                logout();
+                window.location.href = '/login';
+              }}
+              className="px-4 py-1 transition-colors hover:bg-gray-100 rounded"
+              title="Logout"
+            >
+              <LogOut className="w-4 h-4 text-[#b52c61]" />
+            </button>
+          </div>
         </div>
       </div>
     </header>

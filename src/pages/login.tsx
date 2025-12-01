@@ -1,10 +1,21 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../hooks/useUser";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const { login, error } = useUser();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const result = await login(email, password);
+    if (result.success) {
+      navigate("/user/dashboard");
+    }
+  };
 
   return (
     <div className="w-full flex flex-col">
@@ -89,13 +100,28 @@ const Login = () => {
               </a>
             </div>
 
+            {error && (
+              <div className="text-red-600 text-sm mb-4 text-center w-96">
+                {error}
+              </div>
+            )}
+
             {/* Sign In Button */}
             <button
               type="button"
+              onClick={handleSubmit}
               className="w-96 bg-[#b52c61] text-white py-2 px-6 rounded-lg font-semibold hover:bg-[#b01a51] transition-colors duration-200 mb-6 tracking-wide"
             >
               SIGN IN
             </button>
+
+            <div className="text-sm text-center w-96 mb-4">
+              <p className="text-gray-600">Demo accounts:</p>
+              <div className="mt-1 space-y-1">
+                <p className="text-xs text-gray-500">User: john@example.com / password123</p>
+                <p className="text-xs text-gray-500">Admin: admin@example.com / admin123</p>
+              </div>
+            </div>
 
             {/* Sign Up Link */}
             <div className="text-center">

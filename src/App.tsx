@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/home";
 import AMLPolicy from "./pages/aml-policy";
 import ContactUs from "./pages/contact-us";
@@ -12,6 +12,7 @@ import Dashboard from "./pages/dashboard";
 import CryptoChill from "./pages/crypto-chill";
 import Invoice from "./pages/invoice";
 import { Toaster } from "react-hot-toast";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 
 function App() {
@@ -21,9 +22,34 @@ function App() {
         <Toaster position="top-right" />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/user/dashboard" element={<Dashboard />} />
-          <Route path="/user/deposit/crypto-chill" element={<CryptoChill />} />
-          <Route path="/user/invoice" element={<Invoice />} />
+          
+          {/* Protected Routes */}
+          <Route
+            path="/user/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/user/deposit/crypto-chill"
+            element={
+              <ProtectedRoute>
+                <CryptoChill />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/user/invoice"
+            element={
+              <ProtectedRoute>
+                <Invoice />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/aml-policy" element={<AMLPolicy />} />
@@ -31,6 +57,8 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/terms-conditions" element={<TermsConditions />} />
+          
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
     </div>
