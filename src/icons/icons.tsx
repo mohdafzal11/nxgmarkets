@@ -489,3 +489,29 @@ export const PhoneIcon = ({
     </svg>
   );
 };
+
+export const MessageIcon = ({
+  className,
+}: {
+  className?: string;
+  fill?: string;
+}) => {
+  return (
+    <svg
+      className={className}
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        className="icon-svg-path"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M2 9C2 6.79086 3.79086 5 6 5H26C28.2091 5 30 6.79086 30 9V25.71V27V31.5029C30 31.9483 29.4614 32.1714 29.1464 31.8564L24.29 27H6C3.79086 27 2 25.2091 2 23V9ZM7 16C7 14.8954 7.89543 14 9 14C10.1046 14 11 14.8954 11 16C11 17.1046 10.1046 18 9 18C7.89543 18 7 17.1046 7 16ZM14 16C14 14.8954 14.8954 14 16 14C17.1046 14 18 14.8954 18 16C18 17.1046 17.1046 18 16 18C14.8954 18 14 17.1046 14 16ZM23 14C21.8954 14 21 14.8954 21 16C21 17.1046 21.8954 18 23 18C24.1046 18 25 17.1046 25 16C25 14.8954 24.1046 14 23 14Z"
+        fill="white"
+      ></path>
+    </svg>
+  );
+};
