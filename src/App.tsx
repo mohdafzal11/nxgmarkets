@@ -9,6 +9,7 @@ import TermsConditions from "./pages/terms-conditions";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Dashboard from "./pages/dashboard";
+import CryptoChill from "./pages/crypto-chill";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/user/dashboard" element={<Dashboard />} />
+          <Route path="/user/deposit/crypto-chill" element={<CryptoChill />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/aml-policy" element={<AMLPolicy />} />
