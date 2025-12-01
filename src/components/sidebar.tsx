@@ -324,7 +324,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="w-64 bg-white h-screen shadow-lg flex flex-col m-3 rounded-xl">
+    <div className="w-64 bg-white h-screen shadow-lg flex flex-col rounded-xl">
       {/* Logo */}
       <div className="p-6 border-b border-gray-200">
         <img src={"/src/assets/logo.png"} alt="logo" className="h-8" />
